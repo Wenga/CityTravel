@@ -9,15 +9,22 @@ function createMarkerHtml(city) {
     return `
       <button class="number-marker number-marker-osaka" type="button" aria-label="Hidden number ${city.hiddenNumber}">
         <svg class="sakura-marker" viewBox="0 0 64 64" aria-hidden="true">
-          <g class="sakura-flower" transform="translate(32 32) rotate(-8)">
-            <path class="sakura-petal sakura-petal-1" d="M0,-8 C-8,-24 -2,-32 6,-29 C14,-26 14,-14 4,-6 Z" />
-            <path class="sakura-petal sakura-petal-2" d="M7,-3 C23,-12 32,-5 29,4 C26,13 14,12 5,4 Z" />
-            <path class="sakura-petal sakura-petal-3" d="M5,6 C16,20 10,30 0,29 C-10,28 -9,15 -2,6 Z" />
-            <path class="sakura-petal sakura-petal-4" d="M-5,6 C-18,19 -30,14 -29,4 C-28,-6 -16,-7 -6,1 Z" />
-            <path class="sakura-petal sakura-petal-5" d="M-7,-3 C-24,-8 -24,-20 -15,-24 C-6,-28 0,-17 -1,-6 Z" />
-            <circle class="sakura-center" cx="0" cy="0" r="6.3" />
+          <g class="sakura-flower" transform="translate(32 32) rotate(4)">
+            <ellipse class="sakura-petal sakura-petal-1" cx="0" cy="-15" rx="10.5" ry="15.5" transform="rotate(0)" />
+            <ellipse class="sakura-petal sakura-petal-2" cx="14.5" cy="-4.5" rx="10.5" ry="15.5" transform="rotate(72 14.5 -4.5)" />
+            <ellipse class="sakura-petal sakura-petal-3" cx="9" cy="13" rx="10.5" ry="15.5" transform="rotate(144 9 13)" />
+            <ellipse class="sakura-petal sakura-petal-4" cx="-9" cy="13" rx="10.5" ry="15.5" transform="rotate(216 -9 13)" />
+            <ellipse class="sakura-petal sakura-petal-5" cx="-14.5" cy="-4.5" rx="10.5" ry="15.5" transform="rotate(288 -14.5 -4.5)" />
+            <g class="sakura-veins">
+              <path d="M0,0 L0,-22" />
+              <path d="M0,0 L20,-7" />
+              <path d="M0,0 L12,18" />
+              <path d="M0,0 L-12,18" />
+              <path d="M0,0 L-20,-7" />
+            </g>
+            <circle class="sakura-center" cx="0" cy="0" r="5.4" />
           </g>
-          <text class="sakura-number" x="32" y="37">${city.hiddenNumber}</text>
+          <text class="sakura-number" x="32" y="39">${city.hiddenNumber}</text>
         </svg>
       </button>
     `;

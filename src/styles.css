@@ -649,6 +649,25 @@ button {
   font-weight: 950;
 }
 
+.number-marker-beijing {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #ffd84d;
+  opacity: 0.92;
+}
+
+.number-marker-beijing span {
+  font-family: "Comic Neue", "Baloo 2", "Nunito", system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 950;
+  line-height: 1;
+  text-shadow:
+    0 2px 0 rgba(84, 42, 18, 0.8),
+    0 0 9px rgba(255, 198, 67, 0.52);
+}
+
 .number-marker-osaka {
   border: 0;
   border-radius: 0;
@@ -659,8 +678,8 @@ button {
 }
 
 .number-marker-osaka .sakura-marker {
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   overflow: visible;
   filter: drop-shadow(3px 4px 3px rgba(68, 43, 48, 0.2));
   transform: rotate(7deg);
@@ -676,37 +695,44 @@ button {
 }
 
 .sakura-petal {
-  fill: rgba(255, 213, 227, 0.86);
-  stroke: rgba(92, 58, 75, 0.5);
-  stroke-width: 2.6;
+  fill: rgba(250, 164, 171, 0.88);
+  stroke: rgba(120, 75, 88, 0.42);
+  stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .sakura-petal-2,
 .sakura-petal-4 {
-  fill: rgba(255, 200, 220, 0.8);
+  fill: rgba(248, 155, 166, 0.84);
 }
 
 .sakura-petal-3 {
-  fill: rgba(255, 225, 235, 0.83);
+  fill: rgba(255, 183, 194, 0.82);
+}
+
+.sakura-veins path {
+  fill: none;
+  stroke: rgba(255, 246, 223, 0.74);
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 .sakura-center {
-  fill: rgba(204, 119, 154, 0.72);
-  stroke: rgba(92, 58, 75, 0.3);
-  stroke-width: 1.2;
+  fill: rgba(199, 91, 122, 0.82);
+  stroke: rgba(255, 246, 223, 0.38);
+  stroke-width: 0.8;
 }
 
 .sakura-number {
   fill: #4b3342;
   font-family: "Comic Neue", "Baloo 2", "Nunito", system-ui, sans-serif;
-  font-size: 21px;
+  font-size: 24px;
   font-weight: 900;
   text-anchor: middle;
   paint-order: stroke;
-  stroke: rgba(255, 238, 244, 0.52);
-  stroke-width: 2.3px;
+  stroke: rgba(255, 238, 244, 0.76);
+  stroke-width: 3px;
   transform: rotate(-5deg);
   transform-origin: 32px 32px;
 }

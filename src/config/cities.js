@@ -14,9 +14,9 @@ export const DESTINATIONS = [
     lat: 39.9042,
     lng: 116.4074,
     hiddenNumber: 7,
-    panorama: `${PANORAMA_BASE}/beijing.jpg`,
-    panoramaSize: { width: 4096, height: 2048 },
-    markerPosition: { yaw: '72deg', pitch: '-11deg' },
+    panorama: `${PANORAMA_BASE}/beijing.png`,
+    panoramaSize: { width: 1774, height: 887 },
+    markerPosition: { yaw: '-137deg', pitch: '35deg' },
     clue: 'A lucky spark tucked between old walls and new lights.',
   },
   {
@@ -27,7 +27,7 @@ export const DESTINATIONS = [
     hiddenNumber: 2,
     panorama: `${PANORAMA_BASE}/osaka.png`,
     panoramaSize: { width: 1774, height: 887 },
-    markerPosition: { yaw: '34deg', pitch: '73deg' },
+    markerPosition: { yaw: '-155deg', pitch: '24deg' },
     clue: 'Two little lanterns are waiting in the swirl.',
   },
   {
