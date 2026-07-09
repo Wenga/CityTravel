@@ -27,7 +27,7 @@ export const DESTINATIONS = [
     hiddenNumber: 2,
     panorama: `${PANORAMA_BASE}/osaka.png`,
     panoramaSize: { width: 1774, height: 887 },
-    markerPosition: { yaw: '214deg', pitch: '4deg' },
+    markerPosition: { yaw: '34deg', pitch: '73deg' },
     clue: 'Two little lanterns are waiting in the swirl.',
   },
   {

@@ -4,6 +4,28 @@ import { EquirectangularAdapter, Viewer } from '@photo-sphere-viewer/core';
 import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
 
+function createMarkerHtml(city) {
+  if (city.id === 'osaka') {
+    return `
+      <button class="number-marker number-marker-osaka" type="button" aria-label="Hidden number ${city.hiddenNumber}">
+        <svg class="sakura-marker" viewBox="0 0 64 64" aria-hidden="true">
+          <g class="sakura-flower" transform="translate(32 32) rotate(-8)">
+            <path class="sakura-petal sakura-petal-1" d="M0,-8 C-8,-24 -2,-32 6,-29 C14,-26 14,-14 4,-6 Z" />
+            <path class="sakura-petal sakura-petal-2" d="M7,-3 C23,-12 32,-5 29,4 C26,13 14,12 5,4 Z" />
+            <path class="sakura-petal sakura-petal-3" d="M5,6 C16,20 10,30 0,29 C-10,28 -9,15 -2,6 Z" />
+            <path class="sakura-petal sakura-petal-4" d="M-5,6 C-18,19 -30,14 -29,4 C-28,-6 -16,-7 -6,1 Z" />
+            <path class="sakura-petal sakura-petal-5" d="M-7,-3 C-24,-8 -24,-20 -15,-24 C-6,-28 0,-17 -1,-6 Z" />
+            <circle class="sakura-center" cx="0" cy="0" r="6.3" />
+          </g>
+          <text class="sakura-number" x="32" y="37">${city.hiddenNumber}</text>
+        </svg>
+      </button>
+    `;
+  }
+
+  return `<button class="number-marker number-marker-${city.id}" type="button" aria-label="Hidden number ${city.hiddenNumber}"><span>${city.hiddenNumber}</span></button>`;
+}
+
 export default function PanoramaScene({ city, alreadyFound, onFound }) {
   const containerRef = useRef(null);
   const viewerRef = useRef(null);
@@ -50,8 +72,8 @@ export default function PanoramaScene({ city, alreadyFound, onFound }) {
               {
                 id: `hidden-${city.id}`,
                 position: city.markerPosition,
-                html: `<button class="number-marker" type="button" aria-label="Hidden number ${city.hiddenNumber}">${city.hiddenNumber}</button>`,
-                size: { width: 56, height: 56 },
+                html: createMarkerHtml(city),
+                size: { width: 64, height: 64 },
                 anchor: 'center center',
                 tooltip: 'Found a birthday number!',
               },

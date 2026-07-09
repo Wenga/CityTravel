@@ -631,8 +631,11 @@ button {
 }
 
 .number-marker {
-  width: 56px;
-  height: 56px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
   border: 3px solid var(--ink);
   border-radius: 50%;
   background: var(--lemon);
@@ -644,6 +647,68 @@ button {
   font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 950;
+}
+
+.number-marker-osaka {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #4b3342;
+  opacity: 0.87;
+}
+
+.number-marker-osaka .sakura-marker {
+  width: 42px;
+  height: 42px;
+  overflow: visible;
+  filter: drop-shadow(3px 4px 3px rgba(68, 43, 48, 0.2));
+  transform: rotate(7deg);
+  transition: transform 160ms ease, filter 160ms ease, opacity 160ms ease;
+}
+
+.number-marker-osaka:active .sakura-marker,
+.number-marker-osaka:focus-visible .sakura-marker {
+  filter:
+    drop-shadow(3px 4px 3px rgba(68, 43, 48, 0.18))
+    drop-shadow(0 0 8px rgba(255, 183, 213, 0.62));
+  transform: rotate(7deg) scale(1.08);
+}
+
+.sakura-petal {
+  fill: rgba(255, 213, 227, 0.86);
+  stroke: rgba(92, 58, 75, 0.5);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sakura-petal-2,
+.sakura-petal-4 {
+  fill: rgba(255, 200, 220, 0.8);
+}
+
+.sakura-petal-3 {
+  fill: rgba(255, 225, 235, 0.83);
+}
+
+.sakura-center {
+  fill: rgba(204, 119, 154, 0.72);
+  stroke: rgba(92, 58, 75, 0.3);
+  stroke-width: 1.2;
+}
+
+.sakura-number {
+  fill: #4b3342;
+  font-family: "Comic Neue", "Baloo 2", "Nunito", system-ui, sans-serif;
+  font-size: 21px;
+  font-weight: 900;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(255, 238, 244, 0.52);
+  stroke-width: 2.3px;
+  transform: rotate(-5deg);
+  transform-origin: 32px 32px;
 }
 
 .final-screen {
