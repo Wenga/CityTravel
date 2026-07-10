@@ -3,17 +3,12 @@ import { ArrowLeft, Gift, Heart, Send, Sparkles } from 'lucide-react';
 import { DESTINATIONS } from './config/cities';
 import { useTreasureProgress } from './hooks/useTreasureProgress';
 import GlobeMap from './components/GlobeMap.jsx';
-import FinalMessage from './components/FinalMessage.jsx';
 
 const PanoramaScene = lazy(() => import('./components/PanoramaScene.jsx'));
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState(null);
   const progress = useTreasureProgress();
-
-  if (progress.isComplete && !selectedCity) {
-    return <FinalMessage numbers={progress.numbers} onReset={progress.reset} />;
-  }
 
   return (
     <main className="app-shell">
@@ -31,7 +26,6 @@ export default function App() {
           <Suspense fallback={<div className="viewer-loading">Opening the portal...</div>}>
             <PanoramaScene
               city={selectedCity}
-              alreadyFound={Boolean(progress.found[selectedCity.id])}
               onFound={() => progress.markFound(selectedCity.id)}
             />
           </Suspense>
@@ -57,7 +51,12 @@ export default function App() {
             </div>
           </header>
 
-          <GlobeMap destinations={DESTINATIONS} found={progress.found} onSelect={setSelectedCity} />
+          <GlobeMap
+            destinations={DESTINATIONS}
+            found={progress.found}
+            isComplete={progress.isComplete}
+            onSelect={setSelectedCity}
+          />
         </section>
       )}
     </main>

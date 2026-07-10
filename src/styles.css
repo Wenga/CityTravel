@@ -401,6 +401,29 @@ button {
   animation-delay: 0.45s;
 }
 
+.globe-found-message {
+  position: absolute;
+  left: 50%;
+  bottom: -82px;
+  z-index: 2;
+  width: min(82vw, 330px);
+  margin: 0;
+  transform: translateX(-50%) rotate(-1deg);
+  border: 2px solid rgba(144, 93, 158, 0.22);
+  border-radius: 16px 14px 18px 15px;
+  background: rgba(255, 246, 223, 0.82);
+  box-shadow:
+    4px 5px 0 rgba(255, 183, 213, 0.2),
+    0 10px 22px rgba(95, 83, 102, 0.14);
+  color: var(--ink);
+  font-family: "Comic Neue", "Baloo 2", "Nunito", system-ui, sans-serif;
+  font-size: 1.02rem;
+  font-weight: 900;
+  line-height: 1.12;
+  padding: 10px 14px;
+  text-align: center;
+}
+
 .scene-screen {
   position: relative;
   min-height: 100svh;
@@ -442,45 +465,45 @@ button {
 
 .scene-screen .icon-button {
   flex: 0 0 auto;
-  border: 4px solid rgba(255, 246, 223, 0.92);
-  outline: 2px solid rgba(56, 36, 63, 0.62);
+  border: 3px solid rgba(255, 255, 255, 0.94);
+  outline: 1px dashed rgba(255, 255, 255, 0.72);
   outline-offset: -6px;
-  background: rgba(255, 246, 223, 0.08);
+  background: rgba(255, 255, 255, 0.03);
   color: #fffaf5;
   box-shadow:
-    4px 5px 0 rgba(255, 183, 213, 0.58),
-    -3px -2px 0 rgba(174, 234, 242, 0.5),
-    0 14px 28px rgba(56, 36, 63, 0.24);
+    3px 4px 0 rgba(255, 255, 255, 0.28),
+    -2px -2px 0 rgba(255, 255, 255, 0.18),
+    0 12px 28px rgba(28, 21, 34, 0.34);
   transform: rotate(-2deg);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
 }
 
 .scene-screen .top-bar > div {
   min-width: 0;
-  border: 4px solid rgba(255, 246, 223, 0.9);
-  outline: 2px solid rgba(56, 36, 63, 0.52);
-  outline-offset: -7px;
+  border: 3px solid rgba(255, 255, 255, 0.92);
+  outline: 1px dashed rgba(255, 255, 255, 0.68);
+  outline-offset: -6px;
   border-radius: 999px;
-  background: rgba(255, 246, 223, 0.06);
+  background: rgba(255, 255, 255, 0.03);
   box-shadow:
-    5px 6px 0 rgba(201, 182, 255, 0.5),
-    -3px -2px 0 rgba(255, 183, 213, 0.42),
-    0 14px 28px rgba(56, 36, 63, 0.24);
+    4px 5px 0 rgba(255, 255, 255, 0.24),
+    -3px -2px 0 rgba(255, 255, 255, 0.16),
+    0 14px 30px rgba(28, 21, 34, 0.32);
   padding: 10px 18px 11px;
   transform: rotate(1.2deg);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
 }
 
 .top-bar h1 {
-  color: #fff6df;
+  color: #fff;
   font-family: "Baloo 2", "Nunito", "Comic Neue", system-ui, sans-serif;
   font-size: 1.45rem;
   font-weight: 900;
   line-height: 1;
   text-shadow:
-    2px 2px 0 rgba(56, 36, 63, 0.74),
-    -1px 1px 0 rgba(255, 183, 213, 0.72),
-    0 5px 13px rgba(56, 36, 63, 0.36);
+    2px 2px 0 rgba(47, 34, 54, 0.78),
+    -1px 1px 0 rgba(255, 255, 255, 0.28),
+    0 5px 13px rgba(47, 34, 54, 0.36);
 }
 
 .eyebrow {
@@ -548,18 +571,18 @@ button {
   height: 48px;
   min-height: 48px;
   padding: 0;
-  border: 4px solid rgba(255, 246, 223, 0.92);
-  outline: 2px solid rgba(56, 36, 63, 0.58);
+  border: 3px solid rgba(255, 255, 255, 0.94);
+  outline: 1px dashed rgba(255, 255, 255, 0.68);
   outline-offset: -6px;
   border-radius: 999px;
-  background: rgba(255, 246, 223, 0.07);
+  background: rgba(255, 255, 255, 0.03);
   box-shadow:
-    5px 5px 0 rgba(174, 234, 242, 0.54),
-    -2px -2px 0 rgba(255, 183, 213, 0.48),
-    0 14px 30px rgba(56, 36, 63, 0.24);
-  color: #fff6df;
+    4px 5px 0 rgba(255, 255, 255, 0.24),
+    -2px -2px 0 rgba(255, 255, 255, 0.16),
+    0 14px 30px rgba(28, 21, 34, 0.34);
+  color: #fff;
   transform: rotate(2deg);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
 }
 
 .motion-button:disabled {
@@ -567,48 +590,48 @@ button {
 }
 
 .motion-button:disabled svg {
-  color: #5f8c69;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .clue-card {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  border: 5px solid rgba(255, 246, 223, 0.86);
-  outline: 2px solid rgba(56, 36, 63, 0.58);
-  outline-offset: -8px;
-  border-radius: 20px;
-  background: rgba(255, 246, 223, 0.06);
+  border: 3px solid rgba(255, 255, 255, 0.92);
+  outline: 1px dashed rgba(255, 255, 255, 0.66);
+  outline-offset: -6px;
+  border-radius: 18px 23px 19px 25px;
+  background: rgba(255, 255, 255, 0.025);
   box-shadow:
-    7px 8px 0 rgba(201, 182, 255, 0.46),
-    -4px -3px 0 rgba(255, 183, 213, 0.42),
-    0 18px 36px rgba(56, 36, 63, 0.28);
-  color: #fff6df;
+    5px 6px 0 rgba(255, 255, 255, 0.22),
+    -3px -2px 0 rgba(255, 255, 255, 0.14),
+    0 18px 36px rgba(28, 21, 34, 0.34);
+  color: #fff;
   padding: 16px 17px;
   transform: rotate(-0.7deg);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
 }
 
 .clue-card.is-found {
-  border-color: rgba(189, 235, 207, 0.9);
-  background: rgba(189, 235, 207, 0.08);
+  border-color: rgba(255, 255, 255, 0.98);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .clue-card p {
   margin: 0;
-  color: #fff6df;
+  color: #fff;
   font-family: "Baloo 2", "Nunito", "Comic Neue", system-ui, sans-serif;
   font-size: 1.05rem;
   font-weight: 900;
   line-height: 1.18;
   text-shadow:
-    2px 2px 0 rgba(56, 36, 63, 0.78),
-    -1px 1px 0 rgba(255, 183, 213, 0.56);
+    2px 2px 0 rgba(47, 34, 54, 0.82),
+    -1px 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .clue-card span,
 .small-note {
-  color: rgba(255, 246, 223, 0.92);
+  color: rgba(255, 255, 255, 0.94);
   font-family: "Nunito", "Comic Neue", system-ui, sans-serif;
   font-size: 0.9rem;
   font-weight: 800;
@@ -617,17 +640,17 @@ button {
 
 .small-note {
   margin: 0;
-  border-radius: 999px;
-  border: 4px solid rgba(255, 246, 223, 0.84);
-  outline: 2px solid rgba(56, 36, 63, 0.5);
-  outline-offset: -7px;
-  background: rgba(255, 246, 223, 0.06);
+  border-radius: 999px 920px 980px 900px;
+  border: 3px solid rgba(255, 255, 255, 0.88);
+  outline: 1px dashed rgba(255, 255, 255, 0.62);
+  outline-offset: -6px;
+  background: rgba(255, 255, 255, 0.025);
   box-shadow:
-    5px 5px 0 rgba(255, 183, 213, 0.42),
-    0 12px 26px rgba(56, 36, 63, 0.22);
+    4px 5px 0 rgba(255, 255, 255, 0.18),
+    0 12px 26px rgba(28, 21, 34, 0.28);
   padding: 11px 14px;
   text-align: center;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
 }
 
 .number-marker {
@@ -647,6 +670,46 @@ button {
   font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 950;
+}
+
+.airport-instruction-bubble {
+  position: relative;
+  width: 268px;
+  max-width: 72vw;
+  padding: 16px 18px 18px;
+  border: 2px solid rgba(83, 61, 69, 0.52);
+  outline: 1px dashed rgba(255, 255, 255, 0.82);
+  outline-offset: -8px;
+  border-radius: 10px 14px 11px 13px;
+  background:
+    linear-gradient(3deg, rgba(255, 246, 223, 0.9), rgba(255, 250, 239, 0.86)),
+    repeating-linear-gradient(0deg, transparent 0 17px, rgba(95, 83, 102, 0.08) 18px 19px);
+  box-shadow:
+    4px 5px 0 rgba(255, 255, 255, 0.34),
+    0 12px 26px rgba(47, 34, 54, 0.24);
+  color: var(--ink);
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+.airport-instruction-bubble::before {
+  content: none;
+}
+
+.airport-instruction-bubble p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #4c3442;
+  font-family: "Comic Neue", "Baloo 2", "Nunito", system-ui, sans-serif;
+  font-size: 1.08rem;
+  font-weight: 900;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: 0;
+  text-shadow:
+    1px 1px 0 rgba(255, 246, 223, 0.74),
+    0 2px 6px rgba(83, 61, 69, 0.12);
 }
 
 .number-marker-beijing {
@@ -735,6 +798,58 @@ button {
   stroke-width: 3px;
   transform: rotate(-5deg);
   transform-origin: 32px 32px;
+}
+
+.number-marker-barcelona {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0.86;
+}
+
+.number-marker-barcelona .cloud-marker {
+  width: 58px;
+  height: 42px;
+  overflow: visible;
+  filter: drop-shadow(3px 4px 4px rgba(63, 70, 112, 0.18));
+  transform: rotate(-5deg);
+  transition: transform 160ms ease, filter 160ms ease, opacity 160ms ease;
+}
+
+.number-marker-barcelona:active .cloud-marker,
+.number-marker-barcelona:focus-visible .cloud-marker {
+  filter:
+    drop-shadow(3px 4px 4px rgba(63, 70, 112, 0.14))
+    drop-shadow(0 0 10px rgba(255, 246, 223, 0.68));
+  transform: rotate(-5deg) scale(1.08);
+}
+
+.cloud-shape {
+  fill: rgba(255, 246, 223, 0.82);
+  stroke: rgba(113, 132, 184, 0.5);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cloud-scribble {
+  fill: none;
+  stroke: rgba(255, 183, 213, 0.72);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cloud-number {
+  fill: #5a3a48;
+  font-family: "Comic Neue", "Baloo 2", "Nunito", system-ui, sans-serif;
+  font-size: 23px;
+  font-weight: 950;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(255, 246, 223, 0.7);
+  stroke-width: 3px;
 }
 
 .final-screen {

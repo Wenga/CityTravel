@@ -142,7 +142,7 @@ function createRouteLine(from, to) {
   return line;
 }
 
-export default function GlobeMap({ destinations, found, onSelect }) {
+export default function GlobeMap({ destinations, found, isComplete, onSelect }) {
   const mountRef = useRef(null);
   const onSelectRef = useRef(onSelect);
   const foundRef = useRef(found);
@@ -255,7 +255,7 @@ export default function GlobeMap({ destinations, found, onSelect }) {
       label.position.copy(latLngToVector3(point.lat, point.lng, GLOBE_RADIUS + 0.52));
       globeGroup.add(label);
 
-      if (!isStart) clickablePins.push(pin);
+      clickablePins.push(pin);
     });
 
     globeGroup.rotation.y = -1.05;
@@ -346,7 +346,10 @@ export default function GlobeMap({ destinations, found, onSelect }) {
   return (
     <div className="globe-frame">
       <div ref={mountRef} className="globe-canvas" aria-label="Draggable 3D globe with destination points" />
-      <button className="globe-hint" type="button">Let's begin with Start point!</button>
+      <button className="globe-hint" type="button">Tap the Start Point to begin!</button>
+      {isComplete && (
+        <p className="globe-found-message">You found them! What&apos;s the right order?</p>
+      )}
     </div>
   );
 }

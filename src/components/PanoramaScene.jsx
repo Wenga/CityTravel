@@ -30,34 +30,60 @@ function createMarkerHtml(city) {
     `;
   }
 
+  if (city.id === 'barcelona') {
+    return `
+      <button class="number-marker number-marker-barcelona" type="button" aria-label="Hidden number ${city.hiddenNumber}">
+        <svg class="cloud-marker" viewBox="0 0 72 48" aria-hidden="true">
+          <path class="cloud-shape" d="M17.6,38.2 C9.7,38.2 5.4,33.7 6.8,27.8 C8,22.5 12.3,19.4 18.4,19.6 C19.9,11.4 26.4,6.9 34.3,8.2 C39.8,9.1 43.6,12.3 45.7,17 C51.7,15.9 57.7,18.9 60.1,24.1 C66.2,24.7 69.4,28.3 68,33.2 C66.8,37.4 62.8,39.6 55.8,38.9 C44.5,41.1 31.2,41.1 17.6,38.2 Z" />
+          <path class="cloud-scribble" d="M18.3,25.8 C22.2,20.1 28.3,20.3 31.8,24.2 C35.1,17.4 44.9,18.1 47.7,25.3 C52.4,23.7 57.1,25.7 59.2,29.4" />
+          <text class="cloud-number" x="36" y="33">${city.hiddenNumber}</text>
+        </svg>
+      </button>
+    `;
+  }
+
   return `<button class="number-marker number-marker-${city.id}" type="button" aria-label="Hidden number ${city.hiddenNumber}"><span>${city.hiddenNumber}</span></button>`;
 }
 
-export default function PanoramaScene({ city, alreadyFound, onFound }) {
+function createInstructionBubbleHtml(text) {
+  return `
+    <div class="airport-instruction-bubble" role="note" aria-label="Treasure hunt instructions">
+      <p>${text}</p>
+    </div>
+  `;
+}
+
+export default function PanoramaScene({ city, onFound }) {
   const containerRef = useRef(null);
   const viewerRef = useRef(null);
   const gyroRef = useRef(null);
+  const onFoundRef = useRef(onFound);
   const [gyroState, setGyroState] = useState('idle');
-  const [foundNow, setFoundNow] = useState(alreadyFound);
+  const [foundNow, setFoundNow] = useState(false);
+  const hasHiddenNumber = Number.isFinite(city.hiddenNumber);
 
   useEffect(() => {
-    setFoundNow(alreadyFound);
-  }, [alreadyFound, city.id]);
+    onFoundRef.current = onFound;
+  }, [onFound]);
+
+  useEffect(() => {
+    setFoundNow(false);
+  }, [city.id]);
 
   useEffect(() => {
     const viewer = new Viewer({
       container: containerRef.current,
       adapter: [EquirectangularAdapter, { useXmpData: false }],
       panorama: city.panorama,
-      panoData: {
+      panoData: (image) => ({
         isEquirectangular: true,
-        fullWidth: city.panoramaSize.width,
-        fullHeight: city.panoramaSize.height,
-        croppedWidth: city.panoramaSize.width,
-        croppedHeight: city.panoramaSize.height,
+        fullWidth: image.naturalWidth,
+        fullHeight: image.naturalHeight,
+        croppedWidth: image.naturalWidth,
+        croppedHeight: image.naturalHeight,
         croppedX: 0,
         croppedY: 0,
-      },
+      }),
       defaultYaw: '0deg',
       defaultPitch: '0deg',
       minFov: 30,
@@ -76,14 +102,25 @@ export default function PanoramaScene({ city, alreadyFound, onFound }) {
           MarkersPlugin,
           {
             markers: [
-              {
-                id: `hidden-${city.id}`,
-                position: city.markerPosition,
-                html: createMarkerHtml(city),
-                size: { width: 64, height: 64 },
-                anchor: 'center center',
-                tooltip: 'Found a birthday number!',
-              },
+              ...(city.instructionNotes ?? []).map((note) => ({
+                id: `instruction-${city.id}-${note.id}`,
+                position: note.position,
+                html: createInstructionBubbleHtml(note.text),
+                size: { width: 280, height: 130 },
+                anchor: 'bottom center',
+              })),
+              ...(hasHiddenNumber
+                ? [
+                    {
+                      id: `hidden-${city.id}`,
+                      position: city.markerPosition,
+                      html: createMarkerHtml(city),
+                      size: { width: 64, height: 64 },
+                      anchor: 'center center',
+                      tooltip: 'Found a birthday number!',
+                    },
+                  ]
+                : []),
             ],
           },
         ],
@@ -97,7 +134,7 @@ export default function PanoramaScene({ city, alreadyFound, onFound }) {
     const handleMarkerSelect = ({ marker }) => {
       if (marker.id === `hidden-${city.id}`) {
         setFoundNow(true);
-        onFound();
+        onFoundRef.current();
       }
     };
 
@@ -109,7 +146,7 @@ export default function PanoramaScene({ city, alreadyFound, onFound }) {
       viewerRef.current = null;
       gyroRef.current = null;
     };
-  }, [city, onFound]);
+  }, [city, hasHiddenNumber]);
 
   async function enableMotion() {
     setGyroState('requesting');
@@ -134,6 +171,7 @@ export default function PanoramaScene({ city, alreadyFound, onFound }) {
     if (foundNow) return `You found ${city.hiddenNumber}`;
     if (gyroState === 'requesting') return 'Allow motion access to begin.';
     if (gyroState === 'denied') return 'Motion was not enabled. You can still drag around to search.';
+    if (!hasHiddenNumber) return 'Tap the phone icon first to enable orientation for the airport scene.';
     return 'Tap the phone icon first to enable orientation.';
   })();
 
