@@ -3,6 +3,7 @@ import { Smartphone, Sparkles } from 'lucide-react';
 import { EquirectangularAdapter, Viewer } from '@photo-sphere-viewer/core';
 import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
+import { playFoundSound } from '../utils/sounds.js';
 
 function createMarkerHtml(city) {
   if (city.id === 'osaka') {
@@ -133,6 +134,7 @@ export default function PanoramaScene({ city, onFound }) {
     const markers = viewer.getPlugin(MarkersPlugin);
     const handleMarkerSelect = ({ marker }) => {
       if (marker.id === `hidden-${city.id}`) {
+        playFoundSound();
         setFoundNow(true);
         onFoundRef.current();
       }

@@ -1,14 +1,26 @@
-import { Suspense, lazy, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { ArrowLeft, Gift, Heart, Send, Sparkles } from 'lucide-react';
 import { DESTINATIONS } from './config/cities';
 import { useTreasureProgress } from './hooks/useTreasureProgress';
 import GlobeMap from './components/GlobeMap.jsx';
+import { playTapSound } from './utils/sounds.js';
 
 const PanoramaScene = lazy(() => import('./components/PanoramaScene.jsx'));
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState(null);
   const progress = useTreasureProgress();
+
+  useEffect(() => {
+    function handlePointerDown(event) {
+      const button = event.target.closest('button');
+      if (!button || button.disabled || button.classList.contains('number-marker')) return;
+      playTapSound();
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown, true);
+    return () => document.removeEventListener('pointerdown', handlePointerDown, true);
+  }, []);
 
   return (
     <main className="app-shell">

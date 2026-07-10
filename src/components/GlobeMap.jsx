@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { START_CITY } from '../config/cities';
+import { playCitySelectSound } from '../utils/sounds.js';
 
 const GLOBE_RADIUS = 1.85;
 
@@ -305,6 +306,7 @@ export default function GlobeMap({ destinations, found, isComplete, onSelect }) 
       raycaster.setFromCamera(pointer, camera);
       const [hit] = raycaster.intersectObjects(clickablePins, false);
       if (hit?.object?.userData.city) {
+        playCitySelectSound();
         onSelectRef.current(hit.object.userData.city);
       }
     }
